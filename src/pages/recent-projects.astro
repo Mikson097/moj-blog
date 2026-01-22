@@ -1,0 +1,36 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import Card from "@/components/Card.astro";
+import getSortedPosts from "@/utils/getSortedPosts";
+import { SITE } from "@/config";
+
+const posts = await getCollection("blog");
+const sortedPosts = getSortedPosts(posts);
+---
+
+<Layout title={`Wszystkie Projekty | ${SITE.title}`}>
+  <Header />
+  <main id="main-content" class="app-layout">
+    <section class="pt-8 pb-6 border-b border-border">
+      <h1 class="my-4 text-4xl font-bold sm:my-8 sm:text-5xl">
+        Wszystkie Projekty
+      </h1>
+      <p>
+        Wszystkie moje projekty i realizacje.
+      </p>
+    </section>
+
+    <section class="pt-12 pb-6">
+      <h2 class="text-2xl font-semibold tracking-wide">Wszystkie Projekty</h2>
+      <ul>
+        {sortedPosts.map(data => (
+          <Card {...data} />
+        ))}
+      </ul>
+    </section>
+  </main>
+  <Footer />
+</Layout>
