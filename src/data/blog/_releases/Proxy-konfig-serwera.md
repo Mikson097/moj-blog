@@ -8,6 +8,7 @@ draft: false
 tags:
   - projekty
   - nauka
+  - proxy
 description: Tu znajdzie sie krótki instruktarz jak zainstalowac i skonfigurować proxy
 ---
 

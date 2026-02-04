@@ -6,6 +6,8 @@ import Footer from "@/components/Footer.astro";
 import Card from "@/components/Card.astro";
 import getSortedPosts from "@/utils/getSortedPosts";
 import { SITE } from "@/config";
+import AquariumPhoto from "@/assets/images/akwa.jpg";
+import { Image } from "astro:assets";
 
 const posts = await getCollection("blog");
 const allPosts = getSortedPosts(posts);
@@ -23,10 +25,10 @@ const sortedPosts = allPosts.filter(post => post.data.tags?.includes('akwarium')
         Zdjęcia i informacje o moim akwarium.
       </p>
     </section>
-
     <section class="pt-12 pb-6">
       <h2 class="text-2xl font-semibold tracking-wide">Moje Akwarium</h2>
       <ul>
+      <Image src={AquariumPhoto} alt="Moje akwarium — przód" class="w-full max-w-2xl mx-auto rounded-lg shadow-md" />
         {sortedPosts.map(data => (
           <Card {...data} />
         ))}
