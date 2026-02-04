@@ -250,6 +250,23 @@ const nextPost =
       const copyButton = document.createElement("button");
       copyButton.className = `copy-code absolute end-3 ${topClass} rounded bg-muted border border-muted px-2 py-1 text-xs leading-4 text-foreground font-medium`;
       copyButton.innerHTML = copyButtonLabel;
+
+      // add a small language badge (e.g. "yaml") to the top-right of code blocks
+      try {
+        const codeEl = codeBlock.querySelector("code");
+        const langMatch = (codeEl?.className || "").match(/language-([a-z0-9]+)/i);
+        const lang = langMatch ? langMatch[1] : (codeEl?.getAttribute("data-lang") || "");
+        if (lang) {
+          const langBadge = document.createElement("span");
+          langBadge.className = `code-lang ${topClass}`;
+          langBadge.innerText = lang.toLowerCase();
+          codeBlock.appendChild(langBadge);
+        }
+      } catch (err) {
+        // non-fatal — don't block UI if something unexpected happens
+        console.debug("could not add language badge", err);
+      }
+
       codeBlock.setAttribute("tabindex", "0");
       codeBlock.appendChild(copyButton);
 

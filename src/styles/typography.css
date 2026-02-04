@@ -103,6 +103,15 @@
   /* Styles for Shiki transformers */
   /* https://shiki.style/packages/transformers */
   .astro-code {
+    /* make code blocks look like the screenshot: rounded, padded, and relative for absolute badges */
+    @apply relative rounded-lg overflow-hidden;
+
+    /* ensure the inner pre uses the shiki bg + padding */
+    pre {
+      @apply m-0 rounded-lg p-4 text-sm leading-6 bg-(--shiki-light-bg) dark:bg-(--shiki-dark-bg) border border-border;
+    }
+
+    /* ===== diff / highlight helpers (preserve existing rules) ===== */
     .line.diff.add {
       @apply relative inline-block w-full bg-green-400/20 before:absolute before:-left-3 before:text-green-500 before:content-['+'];
     }
@@ -114,6 +123,46 @@
     }
     .highlighted-word {
       @apply rounded-sm border border-border px-0.5 py-px;
+    }
+
+    /* ===== file-name label inserted by the custom Shiki transformer ===== */
+    /* transformer adds a `span` with `absolute` + utility classes — style the common case here */
+    > span.absolute {
+      @apply z-20 text-xs text-foreground font-medium leading-4 absolute border border-border bg-background px-2 py-1 rounded-md; /* badge-style (v2) */
+      box-shadow: 0 6px 18px rgba(2,6,23,0.25);
+    }
+
+    /* support the green "traffic light" dot the transformer may add */
+    > span.absolute::before {
+      content: "";
+      display: inline-block;
+      width: 0.5rem;
+      height: 0.5rem;
+      background-color: rgb(34 197 94); /* green-500 */
+      border-radius: 9999px;
+      position: absolute;
+      left: 0.5rem;
+      top: 45%;
+      transform: translateY(-50%);
+    }
+
+    /* Variant when transformer uses the tab-like label (v1) */
+    > span.absolute.rounded-tl-none {
+      @apply left-0 -top-6 rounded-t-md border border-b-0 bg-muted/50 px-3 py-1 text-sm;
+      box-shadow: none;
+    }
+
+    /* ===== language badge (inserted client-side) ===== */
+    .code-lang {
+      @apply absolute end-3 top-3 rounded bg-muted/80 border border-border px-2 py-1 text-xs leading-4 text-foreground font-medium;
+      z-index: 25;
+      text-transform: lowercase;
+      opacity: 0.95;
+    }
+
+    /* ensure copy button appears above other badges */
+    .copy-code {
+      @apply z-30;
     }
   }
 }
