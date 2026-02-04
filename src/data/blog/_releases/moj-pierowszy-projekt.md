@@ -32,6 +32,9 @@ Teraz się wyświetli konfiguracja sieciowa wybierzcie odpowieni interfejs któr
 Jeśli chodzi o Hostname nazwijcie go sobie jak checei ale polecam jakis srv-głowny.pve czy cos takiego<br>
 Jeśli chodzi o address IP no to ustawiacie według własnego widzimise jak macie automatyczny dhcp to raczej powinno wam go przydzielic więc klikamy next<br>
 ![alt text](image-3.png)<br>
-No i wyświetla wam sie podsumowanie jeśli wszystko się zgadza to klikamy install 
-
+No i wyświetla wam sie podsumowanie jeśli wszystko się zgadza to klikamy install <br>
+Po zainstalowaniu mozecie wpsiać już adres swojej maszyny i powinno wam coś takiego wyskoczyć 
+![alt text](image-4.png)<br>
+Po zalogowaniu powinien się pojawić taki panel i tutaj znajduje się całe centrum dowodzenia 
+![alt text](image-5.png)
 
