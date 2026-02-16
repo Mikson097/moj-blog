@@ -2,7 +2,7 @@
 author: Mikołaj Liszewski
 pubDatetime: 2026-02-04T13:35:00Z
 title: Proxy
-postSlug: Proxy config do serwera
+postSlug: Proxy-config-serwera
 featured: true
 draft: false
 tags:
